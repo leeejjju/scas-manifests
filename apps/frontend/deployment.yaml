@@ -7,8 +7,8 @@ metadata:
     # 1. 감시할 이미지 목록을 알려줍니다. 'scas-image'는 우리가 지어준 별명입니다.
     argocd-image-updater.argoproj.io/image-list: scas-image=327426387577.dkr.ecr.ap-northeast-2.amazonaws.com/scas-frontend
     # 2. 'scas-image' 별명을 가진 이미지의 업데이트 전략을 알려줍니다.
-    # 'semver'는 버전 규칙(e.g., v1.2.0)을 따를 때, 'latest'는 가장 최근에 푸시된 이미지를 사용하라는 의미입니다.
-    argocd-image-updater.argoproj.io/scas-image.update-strategy: latest
+    # 이 전략은 이미지의 태그 이름에 상관없이, 가장 최근에 푸시된 이미지의 고유한 식별자(Digest, SHA256 해시)를 기준으로 새 버전을 감지합니다. Git 커밋 해시처럼 매번 바뀌는 태그를 사용할 때 완벽하게 동작하는 가장 확실한 방법입니다.
+    argocd-image-updater.argoproj.io/scas-image.update-strategy: digest
 spec:
   replicas: 2
   selector:
