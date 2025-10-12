@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: scas-frontend
+resources:
+  - namespace.yaml
+  - deployment.yaml
+  - service.yaml
+
+images:
+  # ✅ Image Updater가 여기 newTag를 최신 SHA로 자동 갱신(커밋)합니다.
+  - name: 327426387577.dkr.ecr.ap-northeast-2.amazonaws.com/scas-frontend
+    newTag: sha-placeholder
+
