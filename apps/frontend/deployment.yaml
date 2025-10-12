@@ -23,6 +23,6 @@ spec:
       - name: scas-frontend
         # 👇 이제 이곳은 Image Updater가 자동으로 업데이트해주므로,
         # 처음에는 아무 태그나 플레이스홀더를 넣어두면 됩니다.
-        image: 327426387577.dkr.ecr.ap-northeast-2.amazonaws.com/scas-frontend:initial
+        image: 327426387577.dkr.ecr.ap-northeast-2.amazonaws.com/scas-frontend:4595f476a397d2a224130f528a814de94366ee8a
         ports:
         - containerPort: 80
