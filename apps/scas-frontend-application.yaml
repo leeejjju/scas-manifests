@@ -1,19 +1,34 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  # 이 앱의 이름은 scas-frontend 입니다.
   name: scas-frontend
   namespace: argocd
-  # ⭐️ 드디어 사라지지 않을 어노테이션입니다! ⭐️
   annotations:
+    # ✅ 어떤 이미지를 추적할지(별칭 = 실제 이미지)
+    argocd-image-updater.argoproj.io/image-list: |
+      scas-image=327426387577.dkr.ecr.ap-northeast-2.amazonaws.com/scas-frontend
+
+    # ✅ 태그 네이밍이 커밋 SHA라서 뭐가 최신인지 구분 어렵다면 digest 전략 추천
+    argocd-image-updater.argoproj.io/scas-image.update-strategy: digest
+
+    # (선택) 허용 태그 패턴(커밋 SHA 전체 허용)
+    argocd-image-updater.argoproj.io/scas-image.allow-tags: '.*'
+
+    # ✅ Git에 직접 써넣기 (Argo CD Repo 서버의 write 권한 필요)
     argocd-image-updater.argoproj.io/write-back-method: git
+    argocd-image-updater.argoproj.io/git-branch: main
+    argocd-image-updater.argoproj.io/git-user: argocd-image-updater
+    argocd-image-updater.argoproj.io/git-email: image-updater@local
+
+    # (중요) ECR 메타데이터 조회용 인증이 필요할 때 pull secret 지정
+    #  형식: pullsecret:<namespace>/<secretName>
+    #  secret 타입: kubernetes.io/dockerconfigjson
+    # argocd-image-updater.argoproj.io/scas-image.pull-secret: pullsecret:argocd/ecr-pull
 spec:
   project: default
   source:
-    # 이 앱도 자기 자신이 있는 리포지토리를 바라봅니다.
-    repoURL: 'https://github.com/leeejjju/scas-manifests.git' # 👈 본인 리포 주소로 수정
+    repoURL: 'https://github.com/leeejjju/scas-manifests.git'
     targetRevision: main
-    # ⭐️ 그리고 apps/frontend 폴더의 Deployment/Service를 감시합니다! ⭐️
     path: apps/frontend
   destination:
     server: 'https://kubernetes.default.svc'
@@ -24,3 +39,4 @@ spec:
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
+
