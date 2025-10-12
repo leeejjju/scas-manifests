@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  # 애플리케이션의 이름입니다.
+  # 이 앱의 이름은 scas-frontend 입니다.
   name: scas-frontend
-  # ArgoCD가 설치된 네임스페이스입니다.
   namespace: argocd
-  # ⭐️ Image Updater를 동작시키는 핵심 스위치입니다. ⭐️
+  # ⭐️ 드디어 사라지지 않을 어노테이션입니다! ⭐️
   annotations:
     argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   project: default
   source:
-    # 매니페스트 Git 리포지토리 주소입니다.
-    repoURL: 'https://github.com/leeejjju/scas-manifests.git'
-    targetRevision: main # 👈 main 또는 master 등 브랜치 이름으로 수정
+    # 이 앱도 자기 자신이 있는 리포지토리를 바라봅니다.
+    repoURL: 'https://github.com/leeejjju/scas-manifests.git' # 👈 본인 리포 주소로 수정
+    targetRevision: main
+    # ⭐️ 그리고 apps/frontend 폴더의 Deployment/Service를 감시합니다! ⭐️
     path: apps/frontend
   destination:
     server: 'https://kubernetes.default.svc'
