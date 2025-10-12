@@ -32,6 +32,7 @@ spec:
     path: .
   destination:
     server: https://kubernetes.default.svc
+    namespcae: scas
   syncPolicy:
     automated:
       prune: true
