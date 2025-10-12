@@ -9,7 +9,7 @@ metadata:
     # === Argo CD Image Updater 설정 ===
     # 모니터링할 이미지 목록(alias=scas)
     argocd-image-updater.argoproj.io/image-list: |
-      scas=ACCOUNT_ID.dkr.ecr.REGION.amazonaws.com/scas-frontend
+      scas=327426387577.dkr.ecr.ap-northeast-2.amazonaws.com/scas-frontend
 
     # 최신 푸시를 따라가게 (ECR의 pushedAt 기준 최신)
     argocd-image-updater.argoproj.io/scas.update-strategy: latest
@@ -32,7 +32,7 @@ spec:
     path: .
   destination:
     server: https://kubernetes.default.svc
-    namespcae: scas
+    namespace: scas-frontend
   syncPolicy:
     automated:
       prune: true

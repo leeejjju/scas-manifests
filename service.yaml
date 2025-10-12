@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: scas-frontend
-  namespace: scas
+  namespace: scas-frontend
 spec:
   selector:
     app: scas-frontend
