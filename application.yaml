@@ -1,39 +1,26 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  # 애플리케이션의 이름입니다. ArgoCD UI에 이 이름으로 표시됩니다.
+  # 애플리케이션의 이름입니다.
   name: scas-frontend
-  # ArgoCD가 설치된 네임스페이스를 적어주세요 (보통 argocd 입니다).
+  # ArgoCD가 설치된 네임스페이스입니다.
   namespace: argocd
-  # ⭐️ 바로 이 부분이 Image Updater를 동작시키는 핵심 스위치입니다! ⭐️
+  # ⭐️ Image Updater를 동작시키는 핵심 스위치입니다. ⭐️
   annotations:
     argocd-image-updater.argoproj.io/write-back-method: git
 spec:
-  # 이 애플리케이션이 속할 프로젝트입니다. (기본값: default)
   project: default
-
-  # 소스: 배포할 매니페스트가 어디에 있는지 알려줍니다.
   source:
-    # leeejjju님의 매니페스트 Git 리포지토리 주소입니다.
-    repoURL: 'https://github.com/leeejjju/scas-manifests.git' # 👈 본인 리포 주소로 수정
-    # 어떤 브랜치를 바라볼지 지정합니다.
+    # 매니페스트 Git 리포지토리 주소입니다.
+    repoURL: 'https://github.com/leeejjju/scas-manifests.git'
     targetRevision: main # 👈 main 또는 master 등 브랜치 이름으로 수정
-    # 위 리포지토리 안의 어떤 경로에 매니페스트가 있는지 알려줍니다.
     path: apps/frontend
-
-  # 목적지: 위 소스를 어디에 배포할지 알려줍니다.
   destination:
-    # Kubernetes API 서버 주소입니다. 클러스터 내부에 배포할 것이므로 이 값을 그대로 사용합니다.
     server: 'https://kubernetes.default.svc'
-    # 최종적으로 앱이 배포될 네임스페이스입니다.
-    namespace: default # 👈 frontend 앱을 배포하고 싶은 네임스페이스로 지정
-
-  # 동기화 정책: Git과 클러스터의 상태를 어떻게 맞출지 결정합니다.
+    namespace: default
   syncPolicy:
     automated:
-      # Git에 변경이 생기면 자동으로 클러스터에 반영합니다.
       prune: true
       selfHeal: true
-    # 동기화 옵션입니다.
     syncOptions:
     - CreateNamespace=true
