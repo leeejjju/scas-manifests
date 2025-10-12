@@ -32,7 +32,6 @@ spec:
     path: .
   destination:
     server: https://kubernetes.default.svc
-    namespace: scas-frontend
   syncPolicy:
     automated:
       prune: true
