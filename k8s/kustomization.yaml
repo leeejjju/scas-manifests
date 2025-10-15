@@ -1,0 +1,8 @@
+resources:
+  - deployment.yaml
+  - service.yaml
+
+images:
+  - name: 327426387577.dkr.ecr.ap-northeast-2.amazonaws.com/scas-frontend:4595f476a397d2a224130f528a814de94366ee8a
+    newTag: latest
+

@@ -1,0 +1,1 @@
+# SCAS manifests for ArgoCD

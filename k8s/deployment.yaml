@@ -2,7 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: scas-frontend
-  namespace: scas-frontend
+  labels:
+    app: scas-frontend
 spec:
   replicas: 1
   selector:
@@ -15,11 +16,8 @@ spec:
     spec:
       containers:
         - name: scas-frontend
-          image: 327426387577.dkr.ecr.ap-northeast-2.amazonaws.com/scas-frontend:sha-placeholder
-          imagePullPolicy: IfNotPresent
+          image: 327426387577.dkr.ecr.ap-northeast-2.amazonaws.com/scas-frontend:4595f476a397d2a224130f528a814de94366ee8a:latest
           ports:
-            - containerPort: 80
-          env:
-            - name: TZ
-              value: "Asia/Seoul"
+            - containerPort: 3000
+          imagePullPolicy: Always
 
