@@ -19,5 +19,4 @@ spec:
           image: 327426387577.dkr.ecr.ap-northeast-2.amazonaws.com/scas-frontend:4595f476a397d2a224130f528a814de94366ee8a:latest
           ports:
             - containerPort: 3000
-          imagePullPolicy: Always
 
