@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/leeejjju/scas-manifests.git
     targetRevision: main
-    path: .  # root 하위의 모든 app 감지 
+    path: apps 
     directory:
       recurse: true
   destination:
