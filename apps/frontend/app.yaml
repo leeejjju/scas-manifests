@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: scas-frontend
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: scas-frontend=327426387577.dkr.ecr.ap-northeast-2.amazonaws.com/scas-frontend
+    argocd-image-updater.argoproj.io/write-back-method: git
+    argocd-image-updater.argoproj.io/git-branch: main
+    argocd-image-updater.argoproj.io/update-strategy: digest
+    argocd-image-updater.argoproj.io/scas-frontend.allow-tags: regexp:^.*
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/leeejjju/scas-manifests.git
+    targetRevision: main
+    path: apps/frontend
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
