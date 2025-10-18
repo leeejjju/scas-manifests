@@ -6,8 +6,4 @@ metadata:
 data:
   registries.conf: |
     registries:
-      - name: ecr
-        api_url: https://327426387577.dkr.ecr.ap-northeast-2.amazonaws.com
-        prefix: 327426387577.dkr.ecr.ap-northeast-2.amazonaws.com
-        credentials: ext:/usr/local/bin/argocd-ecr-login
 

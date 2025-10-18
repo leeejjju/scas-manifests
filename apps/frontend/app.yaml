@@ -4,7 +4,7 @@ metadata:
   name: scas-frontend
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: scas-frontend=327426387577.dkr.ecr.ap-northeast-2.amazonaws.com/scas-frontend
+    argocd-image-updater.argoproj.io/image-list: scas-frontend=leeejjju/scas-frontend
     argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/git-branch: main
     argocd-image-updater.argoproj.io/update-strategy: digest
