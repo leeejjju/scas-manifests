@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: scas-frontend
-          image: leeejjju/scas-frontend:9fd38e0d40ecad17ffb46652406e71195b4bf0ea
+          image: leeejjju/scas-frontend:24f9f04556d9e0a1e3bc3eddcdab97c3a60734d2
           ports:
             - containerPort: 3000
 
