@@ -6,8 +6,8 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: "scas.leeejjju.main"  
-    http:
+  # - host: "scas.leeejjju.main"  
+  - http:
       paths:
       - path: /
         pathType: Prefix
